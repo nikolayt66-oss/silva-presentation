@@ -55,7 +55,7 @@
         }
 
         /* Decorative "Filing" Lines - Hidden on small mobile to save space */
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .deck-wrapper::after {
                 content: '';
                 position: absolute;
@@ -101,7 +101,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            padding: 2rem 1.5rem; /* Mobile Padding */
+            padding: 1.5rem; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -109,10 +109,10 @@
             visibility: hidden;
             transition: opacity 0.8s ease, visibility 0.8s ease;
             z-index: 1;
-            overflow-y: auto; /* Allow scrolling for content-heavy slides on mobile */
+            overflow-y: auto; 
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .slide {
                 padding: 6rem 10rem;
                 overflow-y: hidden;
@@ -127,8 +127,8 @@
 
         /* 3. TYPOGRAPHY HIERARCHY */
         h1 { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: -0.02em; }
-        .eyebrow { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 1rem; display: block; }
-        @media (min-width: 768px) {
+        .eyebrow { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+        @media (min-width: 1024px) {
             .eyebrow { font-size: 0.65rem; letter-spacing: 0.5em; margin-bottom: 1.5rem; }
         }
         .marginalia { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; opacity: 0.4; }
@@ -136,16 +136,16 @@
         /* 4. NAVIGATION BAR */
         .ui-persistent {
             position: fixed;
-            bottom: 1.5rem;
+            bottom: 1rem;
             width: 100%;
-            padding: 0 1.5rem;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .ui-persistent {
                 bottom: 3rem;
                 padding: 0 6rem;
@@ -155,17 +155,17 @@
         .index-trigger {
             background: transparent;
             border: 1px solid var(--border-muted);
-            padding: 0.5rem 1rem;
-            font-size: 0.55rem;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.5rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             transition: 0.3s;
             display: flex;
-            align-items: center; gap: 1rem;
+            align-items: center; gap: 0.5rem;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .index-trigger {
                 padding: 0.75rem 1.5rem;
                 font-size: 0.6rem;
@@ -177,14 +177,14 @@
         .index-trigger:hover { border-color: var(--gold); background: white; }
 
         .nav-btn {
-            width: 2.5rem; height: 2.5rem;
+            width: 2.25rem; height: 2.25rem;
             border: 1px solid var(--border-muted);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             transition: 0.3s; background: white;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .nav-btn {
                 width: 3rem; height: 3rem;
             }
@@ -198,7 +198,7 @@
             position: absolute;
             bottom: 130%; left: 0;
             background: white;
-            min-width: 220px;
+            min-width: 200px;
             box-shadow: 20px 20px 60px rgba(0,0,0,0.08);
             opacity: 0; visibility: hidden;
             transform: translateY(20px);
@@ -206,20 +206,20 @@
             padding: 0.5rem 0;
             border: 1px solid var(--border-muted);
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .dropdown-content { min-width: 300px; padding: 1rem 0; }
         }
         .menu-container:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-content button {
-            width: 100%; padding: 0.6rem 1.5rem; text-align: left;
-            font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+            width: 100%; padding: 0.6rem 1rem; text-align: left;
+            font-size: 0.55rem; font-weight: 600; text-transform: uppercase;
             letter-spacing: 0.1em; color: var(--navy);
             transition: 0.3s; border: none; background: transparent;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .dropdown-content button { padding: 0.8rem 2rem; font-size: 0.65rem; letter-spacing: 0.15em; }
         }
-        .dropdown-content button:hover { color: var(--gold); padding-left: 2rem; }
+        .dropdown-content button:hover { color: var(--gold); padding-left: 1.5rem; }
 
         /* 6. ILLUSTRATION FRAMES (WATERCOLOR EFFECT) */
         .illustration-frame {
@@ -234,7 +234,7 @@
             justify-content: center;
             overflow: hidden;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .illustration-frame { padding: 1rem; }
         }
         .illustration-frame::after {
@@ -244,14 +244,6 @@
             border: 1px solid rgba(166, 124, 0, 0.15);
             pointer-events: none;
             z-index: 2;
-        }
-
-        .watercolor-filter {
-            width: 100%; height: 100%; object-fit: cover;
-            mix-blend-mode: multiply;
-            filter: sepia(0.4) contrast(1.1) brightness(1.05) saturate(0.8);
-            opacity: 0.9;
-            transition: transform 1.5s var(--transition-main);
         }
 
         /* SVG Line Art and Ink Wash Classes */
@@ -295,25 +287,23 @@
         .slide.active .delay-2 { transition-delay: 0.3s; }
 
         /* 8. DATA & COMPONENTS */
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+        @media (min-width: 768px) { .stats-grid { gap: 0.75rem; } }
+
         .stat-card {
             background: rgba(255,255,255,0.4);
             border: 1px solid var(--border-muted);
-            padding: 1.5rem;
+            padding: 1rem;
             transition: 0.4s;
             position: relative;
             overflow: hidden;
         }
-        @media (min-width: 768px) {
-            .stat-card { padding: 2rem; }
-        }
+        @media (min-width: 1024px) { .stat-card { padding: 2rem; } }
         .stat-card:hover { background: white; border-color: var(--gold); transform: translateY(-5px); }
 
-        .progress-bead-container { display: flex; gap: 0.35rem; margin-top: 1rem; }
+        .progress-bead-container { display: flex; gap: 0.3rem; margin-top: 1rem; }
         .bead { width: 3px; height: 3px; border-radius: 50%; background: var(--navy); opacity: 0.1; transition: 0.4s; }
-        @media (min-width: 768px) {
-            .bead { width: 4px; height: 4px; gap: 0.5rem; }
-        }
+        @media (min-width: 1024px) { .bead { width: 4px; height: 4px; gap: 0.5rem; } }
         .bead.active { opacity: 1; background: var(--gold); transform: scale(1.5); }
 
         /* 9. MARKET QUADRANT */
@@ -322,48 +312,16 @@
             border: 1px solid var(--border-muted);
             position: relative;
             background: white;
-            overflow: hidden;
         }
         .axis-label {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 700;
             letter-spacing: 0.05em;
             text-transform: uppercase;
             position: absolute;
             color: var(--gold);
         }
-        @media (min-width: 768px) {
-            .axis-label { font-size: 0.6rem; letter-spacing: 0.1em; }
-        }
-        
-        .ritual-item {
-            cursor: pointer;
-            padding: 1rem;
-            border-radius: 4px;
-            transition: all 0.4s;
-            border-left: 0px solid var(--gold);
-        }
-        @media (min-width: 768px) {
-            .ritual-item { padding: 1.5rem; }
-        }
-        .ritual-item:hover { 
-            background: white; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border-left: 4px solid var(--gold);
-        }
-        .ritual-note {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            font-size: 0.7rem;
-            color: var(--gold);
-            font-style: italic;
-            margin-top: 0.5rem;
-        }
-        @media (min-width: 768px) {
-            .ritual-note { font-size: 0.75rem; }
-        }
-        .ritual-item:hover .ritual-note { max-height: 100px; }
+        @media (min-width: 1024px) { .axis-label { font-size: 0.6rem; letter-spacing: 0.1em; } }
 
         .chart-bar {
             height: 0%;
@@ -381,24 +339,24 @@
             transform: translate(-50%, 0);
             background: var(--navy);
             color: var(--parchment);
-            padding: 0.6rem 0.8rem;
-            font-size: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.45rem;
             width: max-content;
-            max-width: 140px;
+            max-width: 120px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
             pointer-events: none;
             border: 1px solid var(--gold);
-            line-height: 1.4;
+            line-height: 1.3;
             z-index: 50;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             text-transform: none;
             letter-spacing: normal;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .interactive-tooltip {
                 padding: 0.75rem 1rem;
                 font-size: 0.55rem;
@@ -412,7 +370,7 @@
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 5px;
+            border-width: 4px;
             border-style: solid;
             border-color: var(--navy) transparent transparent transparent;
         }
@@ -439,16 +397,14 @@
         .name-card {
             background: rgba(255,255,255,0.5);
             border: 1px solid rgba(153, 101, 21, 0.08);
-            padding: 0.75rem;
+            padding: 0.5rem;
             text-align: center;
             transition: 0.3s;
         }
-        @media (min-width: 768px) {
-            .name-card { padding: 1rem; }
-        }
+        @media (min-width: 1024px) { .name-card { padding: 1rem; } }
         .name-card:hover { border-color: var(--gold); background: white; }
 
-        /* MATERIAL TEXTURES FOR ALPINE NOIR SLIDE */
+        /* MATERIAL TEXTURES */
         .texture-box {
             position: relative;
             flex: 1;
@@ -459,18 +415,19 @@
             height: 100%;
             overflow: hidden;
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
-            min-height: 80px;
+            min-height: 60px;
         }
+        @media (min-width: 1024px) { .texture-box { min-height: 80px; } }
         .texture-box span {
             position: relative;
             z-index: 10;
-            font-size: 7px;
+            font-size: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.2em;
             font-weight: bold;
             padding: 2px 4px;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .texture-box span { font-size: 8px; letter-spacing: 0.4em; }
         }
         .texture-overlay {
@@ -482,7 +439,7 @@
 </head>
 <body>
 
-    <!-- SVG Filters for Authentic Hand-drawn Effect -->
+    <!-- SVG Filters -->
     <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
         <defs>
             <filter id="rough-ink" x="-20%" y="-20%" width="140%" height="140%">
@@ -524,12 +481,12 @@
                 <div class="progress-bead-container" id="bead-rail"></div>
             </div>
             
-            <div class="flex gap-4 md:gap-12 items-center">
+            <div class="flex gap-4 lg:gap-12 items-center">
                 <div class="text-right hidden sm:block">
                     <div class="marginalia" id="slide-label">The Vision</div>
                     <div class="text-[10px] tracking-widest font-bold opacity-20 mt-1" id="indicator">01 / 09</div>
                 </div>
-                <div class="nav-controls flex gap-2 md:gap-3">
+                <div class="nav-controls flex gap-2 lg:gap-3">
                     <button class="nav-btn" onclick="changeSlide(-1)"><i class="fas fa-arrow-left text-[10px]"></i></button>
                     <button class="nav-btn" onclick="changeSlide(1)"><i class="fas fa-arrow-right text-[10px]"></i></button>
                 </div>
@@ -541,39 +498,32 @@
             
             <!-- SLIDE 1: VISION -->
             <section class="slide active">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 h-full items-center slide-content-anim">
-                    <div class="md:col-span-7 space-y-6 md:space-y-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 h-full items-center slide-content-anim">
+                    <div class="lg:col-span-7 space-y-6 lg:space-y-12">
                         <div>
                             <span class="eyebrow">Engadine | MMXXVI</span>
-                            <h1 class="text-5xl md:text-8xl leading-[0.95] mb-4 md:mb-8">SILVA</h1>
-                            <h2 class="text-xl md:text-3xl font-serif text-gold italic">The town's most sophisticated<br class="hidden md:block">hearth-driven experience</h2>
+                            <h1 class="text-4xl lg:text-8xl leading-[0.95] mb-4 lg:mb-8">SILVA</h1>
+                            <h2 class="text-xl lg:text-3xl font-serif text-gold italic">The town's most sophisticated<br class="hidden lg:block">hearth-driven experience</h2>
                         </div>
-                        <div class="border-l border-navy/10 pl-6 md:pl-10 py-2 max-w-lg">
-                            <p class="text-lg md:text-xl font-light leading-relaxed italic opacity-70">
+                        <div class="border-l border-navy/10 pl-6 lg:pl-10 py-2 max-w-lg">
+                            <p class="text-base lg:text-xl font-light leading-relaxed italic opacity-70">
                                 "Rooted in the boundary where the town meets the primal cold of the high mountains."
                             </p>
                         </div>
-                        <p class="text-xs md:text-sm font-light leading-loose opacity-80 max-w-lg">
+                        <p class="text-[10px] lg:text-sm font-light leading-loose opacity-80 max-w-lg">
                             SILVA bridges the gap between the glacier's cold and the social season's heat, moving away from Global Fine Dining to <strong class="text-gold font-bold">Hyper-Local Primal Luxury</strong>.
                         </p>
                     </div>
-                    <div class="md:col-span-5 h-[300px] md:h-[650px] slide-content-anim delay-1">
+                    <div class="lg:col-span-5 h-[200px] lg:h-[650px] slide-content-anim delay-1">
                         <div class="illustration-frame h-full bg-[#FCFBF7]">
                             <div class="ink-wash-bg"></div>
                             <svg class="line-art" viewBox="0 0 200 200">
                                 <circle cx="100" cy="110" r="50" fill="var(--gold)" opacity="0.05" stroke="none" />
                                 <path d="M 30 160 Q 100 80 170 160 Z" fill="var(--navy)" opacity="0.03" stroke="none" />
                                 <path d="M 10 180 L 50 100 L 80 140 L 140 70 L 190 180" stroke-width="1.5" />
-                                <path d="M 15 180 L 50 110 L 85 145 L 140 85 L 185 180" stroke-width="0.5" opacity="0.6"/>
-                                <path d="M 20 180 L 50 120 L 75 140 L 140 100 L 180 180" stroke-width="0.3" opacity="0.4"/>
                                 <path d="M 100 140 C 90 115, 85 95, 95 75 C 100 70, 105 70, 110 80 C 115 90, 115 110, 100 140 Z" stroke-width="2" fill="var(--parchment)" />
-                                <path d="M 98 135 C 88 115, 87 95, 95 75" stroke-width="0.5" opacity="0.5" />
                                 <path d="M 95 75 C 80 50, 50 40, 30 25" stroke-width="1.5" />
-                                <path d="M 85 65 C 70 45, 45 35, 40 20" stroke-width="1" />
-                                <path d="M 70 52 C 60 35, 50 30, 45 15" stroke-width="0.8" opacity="0.7" />
                                 <path d="M 110 80 C 125 55, 155 45, 175 30" stroke-width="1.5" />
-                                <path d="M 120 70 C 135 50, 160 40, 165 25" stroke-width="1" />
-                                <path d="M 135 57 C 145 40, 155 35, 160 20" stroke-width="0.8" opacity="0.7" />
                             </svg>
                         </div>
                     </div>
@@ -582,107 +532,122 @@
 
             <!-- SLIDE 2: NOMENCLATURE -->
             <section class="slide">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20 items-center h-full slide-content-anim">
-                    <div class="md:col-span-5 h-[250px] md:h-[550px]">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center h-full slide-content-anim">
+                    <div class="lg:col-span-5 h-[200px] lg:h-[550px]">
                         <div class="illustration-frame h-full bg-[#FCFBF7]">
                             <div class="ink-wash-bg"></div>
                             <svg class="line-art" viewBox="0 0 200 200">
                                 <path d="M 10 180 Q 80 120 180 30" stroke-width="2.5" />
                                 <g stroke-width="0.6" opacity="0.8">
                                     <path d="M 40 155 Q 20 120 10 100 M 45 150 Q 30 110 20 90 M 55 145 Q 40 100 25 80" />
-                                    <path d="M 70 130 Q 50 90 35 70 M 85 115 Q 65 75 50 55 M 100 100 Q 80 60 65 40" />
-                                    <path d="M 120 85 Q 100 45 85 25 M 140 70 Q 120 30 105 10 M 160 55 Q 140 15 125 -5" />
+                                    <path d="M 120 85 Q 100 45 85 25 M 140 70 Q 120 30 105 10" />
                                 </g>
                                 <path d="M 110 130 C 130 120, 140 150, 115 170 C 90 150, 95 125, 110 130 Z" stroke-width="1.5" />
-                                <path d="M 105 135 Q 115 145 100 145 M 115 132 Q 125 142 110 142 M 125 135 Q 135 145 120 145" stroke-width="0.8" />
-                                <path d="M 100 145 Q 110 155 95 155 M 110 145 Q 120 155 105 155 M 120 145 Q 130 155 115 155" stroke-width="0.8" />
-                                <path d="M 105 155 Q 115 165 105 165 M 115 155 Q 125 165 115 165" stroke-width="0.8" />
                             </svg>
                         </div>
                     </div>
-                    <div class="md:col-span-7 space-y-6 md:space-y-12 slide-content-anim delay-1">
+                    <div class="lg:col-span-7 space-y-6 lg:space-y-12 slide-content-anim delay-1">
                         <span class="eyebrow">Etymology</span>
-                        <h2 class="text-4xl md:text-6xl leading-tight italic font-light">The origin of <span class="text-gold font-serif font-bold">Silva</span></h2>
-                        <div class="space-y-4 text-xs md:text-sm font-light leading-loose max-w-xl opacity-80">
-                            <p>Latin for <strong>Forest</strong>. It represents the aromatic, dense Stone Pine (Arve) slopes that provide the scent and the fuel for the concept.</p>
-                            <p>It is the transition from groomed luxury to hyper-local, wild provenance of the Grisons hunters.</p>
-                        </div>
-                        <div class="pt-4 grid grid-cols-2 gap-3 md:gap-4 max-w-md">
+                        <h2 class="text-4xl lg:text-6xl leading-tight italic font-light">The origin of <span class="text-gold font-serif font-bold">Silva</span></h2>
+                        <div class="pt-4 grid grid-cols-2 gap-3 lg:gap-4 max-w-md">
                             <div class="name-card group relative cursor-crosshair">
-                                <div class="interactive-tooltip" style="bottom: 100%; margin-bottom: 15px;">
+                                <div class="interactive-tooltip">
                                     <strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">The Arve Pine</strong>
                                     A symbol of Alpine resilience and the primary aromatic wood used in our hearth.
                                 </div>
-                                <h5 class="font-bold text-navy text-xs mb-1 uppercase">Arva</h5>
-                                <p class="text-[8px] opacity-40 uppercase tracking-widest">Stone Pine</p>
+                                <h5 class="font-bold text-navy text-[10px] lg:text-xs mb-1 uppercase">Arva</h5>
+                                <p class="text-[7px] lg:text-[8px] opacity-40 uppercase tracking-widest">Stone Pine</p>
                             </div>
                             <div class="name-card group relative cursor-crosshair">
-                                <div class="interactive-tooltip" style="bottom: 100%; margin-bottom: 15px;">
+                                <div class="interactive-tooltip">
                                     <strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">The Embers</strong>
                                     Reflecting the ancient Romansh heritage and the glowing heart of our kitchen.
                                 </div>
-                                <h5 class="font-bold text-navy text-xs mb-1 uppercase">S-chira</h5>
-                                <p class="text-[8px] opacity-40 uppercase tracking-widest">Embers</p>
+                                <h5 class="font-bold text-navy text-[10px] lg:text-xs mb-1 uppercase">S-chira</h5>
+                                <p class="text-[7px] lg:text-[8px] opacity-40 uppercase tracking-widest">Embers</p>
                             </div>
                             <div class="name-card group relative cursor-crosshair">
-                                <div class="interactive-tooltip" style="bottom: 100%; margin-bottom: 15px;">
+                                <div class="interactive-tooltip">
                                     <strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">Regional Soul</strong>
                                     A tribute to the deep cultural roots and traditions of the Engadine valley.
                                 </div>
-                                <h5 class="font-bold text-navy text-xs mb-1 uppercase">Engadinia</h5>
-                                <p class="text-[8px] opacity-40 uppercase tracking-widest">Heritage</p>
+                                <h5 class="font-bold text-navy text-[10px] lg:text-xs mb-1 uppercase">Engadinia</h5>
+                                <p class="text-[7px] lg:text-[8px] opacity-40 uppercase tracking-widest">Heritage</p>
                             </div>
                             <div class="name-card group relative cursor-crosshair">
-                                <div class="interactive-tooltip" style="bottom: 100%; margin-bottom: 15px;">
+                                <div class="interactive-tooltip">
                                     <strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">Primal Focus</strong>
                                     A literal translation of the core experience: the fire and the trophy.
                                 </div>
-                                <h5 class="font-bold text-navy text-xs mb-1 uppercase">Hearth & Horn</h5>
-                                <p class="text-[8px] opacity-40 uppercase tracking-widest">Literal</p>
+                                <h5 class="font-bold text-navy text-[10px] lg:text-xs mb-1 uppercase">Hearth & Horn</h5>
+                                <p class="text-[7px] lg:text-[8px] opacity-40 uppercase tracking-widest">Literal</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 3: MARKET GAP -->
+            <!-- SLIDE 3: STRATEGIC AVENUE (ADDITIONAL COMPETITORS) -->
             <section class="slide">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 h-full items-center slide-content-anim">
-                    <div class="space-y-6 md:space-y-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 h-full items-center slide-content-anim">
+                    <div class="space-y-6 lg:space-y-12">
                         <span class="eyebrow">Commercial Space</span>
-                        <h2 class="text-4xl md:text-6xl font-light">The Strategic <br><span class="text-gold italic font-serif">Avenue</span></h2>
-                        <p class="text-xs md:text-sm font-light leading-relaxed opacity-70 max-w-md">
+                        <h2 class="text-4xl lg:text-6xl font-light">The Strategic <br><span class="text-gold italic font-serif">Avenue</span></h2>
+                        <p class="text-xs lg:text-sm font-light leading-relaxed opacity-70 max-w-md">
                             St. Moritz is over-supplied with international brands. Guests demand a <strong class="text-navy underline underline-offset-8 decoration-gold/20">Sense of Place</strong>. 
                         </p>
                         <div class="stat-card max-w-sm hidden sm:block">
-                            <p class="text-xs italic leading-loose">"Wild game yields 20% higher check-premiums than standard prime cuts through rarity-driven pricing."</p>
+                            <p class="text-xs italic leading-loose">"Wild game yields 20% higher check-premiums than standard prime cuts."</p>
                         </div>
                     </div>
-                    <div class="quadrant w-full p-4 md:p-12 bg-white shadow-xl slide-content-anim delay-1">
+                    <div class="quadrant w-full p-8 lg:p-12 bg-white shadow-xl slide-content-anim delay-1">
                         <div class="ink-wash-bg opacity-50"></div>
                         <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none z-0"><div class="w-full h-[1px] bg-navy"></div><div class="h-full w-[1px] bg-navy"></div></div>
                         
-                        <span class="axis-label top-2 md:top-4 left-1/2 -translate-x-1/2 z-10 bg-white/80 px-2 py-0.5 rounded">Modern</span>
-                        <span class="axis-label bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-10 bg-white/80 px-2 py-0.5 rounded">Traditional</span>
-                        <span class="axis-label top-1/2 left-2 md:left-4 -translate-y-1/2 -rotate-90 z-10 origin-center bg-white/80 px-1 rounded">Local</span>
-                        <span class="axis-label top-1/2 right-2 md:right-4 -translate-y-1/2 rotate-90 z-10 origin-center bg-white/80 px-1 rounded">Intl</span>
+                        <span class="axis-label top-2 lg:top-4 left-1/2 -translate-x-1/2 z-10 bg-white/80 px-2 rounded">Modern</span>
+                        <span class="axis-label bottom-2 lg:bottom-4 left-1/2 -translate-x-1/2 z-10 bg-white/80 px-2 rounded">Traditional</span>
+                        <span class="axis-label top-1/2 left-1 lg:left-4 -translate-y-1/2 -rotate-90 z-10 origin-center bg-white/80 px-1 rounded">Local</span>
+                        <span class="axis-label top-1/2 right-1 lg:right-4 -translate-y-1/2 rotate-90 z-10 origin-center bg-white/80 px-1 rounded">Intl</span>
                         
-                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 25%; left: 80%; transform: translate(-50%, -50%);">
-                            <div class="interactive-tooltip">High pricing driven by international supply chains. Zero local narrative.</div>
+                        <!-- Global Competitors -->
+                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 20%; left: 85%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip">Global luxury franchises with minimal local sourcing.</div>
                             <div class="w-1.5 h-1.5 bg-slate-400 rounded-full comp-dot-interactive"></div>
-                            <span class="text-[7px] md:text-[8px] text-slate-500 uppercase tracking-widest mt-2 whitespace-nowrap font-bold bg-white/80 px-1 comp-label-interactive">Beefbar / Zuma</span>
+                            <span class="text-[6px] lg:text-[8px] text-slate-500 uppercase mt-2 whitespace-nowrap font-bold bg-white/80 px-1 comp-label-interactive">Beefbar / Zuma</span>
                         </div>
                         
-                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 75%; left: 75%; transform: translate(-50%, -50%);">
-                            <div class="interactive-tooltip">Historic luxury hotel dining. Formal and traditional.</div>
+                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 35%; left: 75%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip">Excellent quality but easily replicable globally.</div>
                             <div class="w-1.5 h-1.5 bg-slate-400 rounded-full comp-dot-interactive"></div>
-                            <span class="text-[7px] md:text-[8px] text-slate-500 uppercase tracking-widest mt-2 whitespace-nowrap font-bold bg-white/80 px-1 comp-label-interactive">Grand Hotels</span>
+                            <span class="text-[6px] lg:text-[8px] text-slate-500 uppercase mt-2 whitespace-nowrap font-bold bg-white/80 px-1 comp-label-interactive">Langosteria</span>
                         </div>
                         
-                        <div class="absolute flex flex-col items-center z-20 group cursor-crosshair" style="top: 18%; left: 18%; transform: translate(-50%, -50%);">
-                            <div class="interactive-tooltip"><strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">The Blue Ocean</strong>Maximum locality paired with modern execution.</div>
-                            <div class="w-3 md:w-4 h-3 md:h-4 bg-gold rounded-full border-2 border-white shadow-lg animate-pulse comp-dot-interactive"></div>
-                            <span class="text-[10px] md:text-[12px] font-bold mt-2 text-gold tracking-widest bg-white/90 px-2 py-0.5 rounded shadow-sm comp-label-interactive">SILVA</span>
+                        <!-- Traditional/Palace Competitors -->
+                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 75%; left: 80%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip">Grand Hotels focusing on classical European service.</div>
+                            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full comp-dot-interactive"></div>
+                            <span class="text-[6px] lg:text-[8px] text-slate-500 uppercase mt-2 whitespace-nowrap font-bold bg-white/80 px-1 comp-label-interactive">Palace Dining</span>
+                        </div>
+                        
+                        <!-- Local Traditional -->
+                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 85%; left: 35%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip">Charming but constrained by rustic fondue/pizza formats.</div>
+                            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full comp-dot-interactive"></div>
+                            <span class="text-[6px] lg:text-[8px] text-slate-500 uppercase mt-2 whitespace-nowrap font-bold bg-white/80 px-1 comp-label-interactive">Chesa Veglia</span>
+                        </div>
+
+                        <!-- Local Modern -->
+                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 45%; left: 40%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip">Modern execution with local roots, but lacking primal fire.</div>
+                            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full comp-dot-interactive"></div>
+                            <span class="text-[6px] lg:text-[8px] text-slate-500 uppercase mt-2 whitespace-nowrap font-bold bg-white/80 px-1 comp-label-interactive">Da Vittorio</span>
+                        </div>
+                        
+                        <!-- SILVA -->
+                        <div class="absolute flex flex-col items-center z-20 group cursor-crosshair" style="top: 15%; left: 15%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip"><strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">The Blue Ocean</strong>Maximum locality paired with progressive, modern execution.</div>
+                            <div class="w-3 lg:w-4 h-3 lg:h-4 bg-gold rounded-full border-2 border-white shadow-lg animate-pulse comp-dot-interactive"></div>
+                            <span class="text-[10px] lg:text-[12px] font-bold mt-2 text-gold tracking-widest bg-white/90 px-2 rounded shadow-sm comp-label-interactive">SILVA</span>
                         </div>
                     </div>
                 </div>
@@ -696,48 +661,47 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 slide-content-anim delay-1">
                     <a href="https://theledbury.com" target="_blank" class="stat-card !p-0 overflow-hidden flex flex-col group block no-underline text-current">
-                        <div class="h-28 md:h-40 border-b border-muted bg-[#FCFBF7] relative overflow-hidden p-6 flex items-center justify-center">
+                        <div class="h-24 lg:h-40 border-b border-muted bg-[#FCFBF7] relative flex items-center justify-center">
                             <div class="ink-wash-bg opacity-40"></div>
-                            <svg class="line-art" viewBox="0 0 100 100"><path d="M 20 80 Q 50 50 80 20" stroke-width="2"/></svg>
+                            <svg class="line-art p-4 lg:p-8" viewBox="0 0 100 100"><path d="M 20 80 Q 50 50 80 20" stroke-width="2"/></svg>
                         </div>
-                        <div class="p-4 md:p-6 flex-grow flex flex-col">
+                        <div class="p-4 flex-grow flex flex-col">
                             <h4 class="font-bold text-sm mb-1">The Ledbury</h4>
-                            <p class="text-[9px] md:text-[10px] text-gold font-bold uppercase mb-2 md:mb-4 tracking-widest">London</p>
-                            <p class="text-[10px] md:text-[11px] font-light opacity-60 flex-grow">Mastery of game with 3-star Michelin reverence.</p>
+                            <p class="text-[9px] text-gold font-bold uppercase mb-2 tracking-widest">London</p>
+                            <p class="text-[10px] font-light opacity-60 flex-grow">Mastery of game with 3-star Michelin reverence.</p>
                         </div>
                     </a>
                     <a href="https://asadoretxebarri.com" target="_blank" class="stat-card !p-0 overflow-hidden flex flex-col group block no-underline text-current">
-                        <div class="h-28 md:h-40 border-b border-muted bg-[#FCFBF7] relative overflow-hidden p-6 flex items-center justify-center">
+                        <div class="h-24 lg:h-40 border-b border-muted bg-[#FCFBF7] relative flex items-center justify-center">
                             <div class="ink-wash-bg opacity-40"></div>
-                            <svg class="line-art" viewBox="0 0 100 100"><path d="M 20 70 L 80 70 M 30 60 L 70 60" stroke-width="1.5"/></svg>
+                            <svg class="line-art p-4 lg:p-8" viewBox="0 0 100 100"><path d="M 20 70 L 80 70 M 30 60 L 70 60" stroke-width="1.5"/></svg>
                         </div>
-                        <div class="p-4 md:p-6 flex-grow flex flex-col">
+                        <div class="p-4 flex-grow flex flex-col">
                             <h4 class="font-bold text-sm mb-1">Etxebarri</h4>
-                            <p class="text-[9px] md:text-[10px] text-gold font-bold uppercase mb-2 md:mb-4 tracking-widest">Spain</p>
-                            <p class="text-[10px] md:text-[11px] font-light opacity-60 flex-grow">The global standard for wood-fired soul.</p>
+                            <p class="text-[9px] text-gold font-bold uppercase mb-2 tracking-widest">Spain</p>
+                            <p class="text-[10px] font-light opacity-60 flex-grow">The global standard for wood-fired soul.</p>
                         </div>
                     </a>
                     <a href="https://schauenstein.ch" target="_blank" class="stat-card !p-0 overflow-hidden flex flex-col group block no-underline text-current">
-                        <div class="h-28 md:h-40 border-b border-muted bg-[#FCFBF7] relative overflow-hidden p-6 flex items-center justify-center">
+                        <div class="h-24 lg:h-40 border-b border-muted bg-[#FCFBF7] relative flex items-center justify-center">
                             <div class="ink-wash-bg opacity-40"></div>
-                            <svg class="line-art" viewBox="0 0 100 100"><path d="M 10 90 L 50 30 L 90 90" stroke-width="1.5"/></svg>
+                            <svg class="line-art p-4 lg:p-8" viewBox="0 0 100 100"><path d="M 10 90 L 50 30 L 90 90" stroke-width="1.5"/></svg>
                         </div>
-                        <div class="p-4 md:p-6 flex-grow flex flex-col">
+                        <div class="p-4 flex-grow flex flex-col">
                             <h4 class="font-bold text-sm mb-1">Schauenstein</h4>
-                            <p class="text-[9px] md:text-[10px] text-gold font-bold uppercase mb-2 md:mb-4 tracking-widest">CH</p>
-                            <p class="text-[10px] md:text-[11px] font-light opacity-60 flex-grow">Proof HNW prioritize Terroir over imports.</p>
+                            <p class="text-[9px] text-gold font-bold uppercase mb-2 tracking-widest">Switzerland</p>
+                            <p class="text-[10px] font-light opacity-60 flex-grow">Proof Terroir is prioritized over global labels.</p>
                         </div>
                     </a>
                     <a href="https://thewitchery.com" target="_blank" class="stat-card !p-0 overflow-hidden flex flex-col group block no-underline text-current">
-                        <div class="h-28 md:h-40 border-b border-muted bg-[#FCFBF7] relative overflow-hidden p-6 flex items-center justify-center">
+                        <div class="h-24 lg:h-40 border-b border-muted bg-[#FCFBF7] relative flex items-center justify-center">
                             <div class="ink-wash-bg opacity-40"></div>
-                            <circle cx="50" cy="50" r="10" stroke="var(--gold)" />
-                            <svg class="line-art" viewBox="0 0 100 100"><path d="M 30 90 L 30 40 C 30 10, 70 10, 70 40 L 70 90" stroke-width="1.5"/></svg>
+                            <svg class="line-art p-4 lg:p-8" viewBox="0 0 100 100"><path d="M 30 90 L 30 40 C 30 10, 70 10, 70 40 L 70 90" stroke-width="1.5"/></svg>
                         </div>
-                        <div class="p-4 md:p-6 flex-grow flex flex-col">
+                        <div class="p-4 flex-grow flex flex-col">
                             <h4 class="font-bold text-sm mb-1">The Witchery</h4>
-                            <p class="text-[9px] md:text-[10px] text-gold font-bold uppercase mb-2 md:mb-4 tracking-widest">Edinburgh</p>
-                            <p class="text-[10px] md:text-[11px] font-light opacity-60 flex-grow">Atmosphere as paramount as the protein.</p>
+                            <p class="text-[9px] text-gold font-bold uppercase mb-2 tracking-widest">Edinburgh</p>
+                            <p class="text-[10px] font-light opacity-60 flex-grow">Atmosphere as paramount as the protein.</p>
                         </div>
                     </a>
                 </div>
@@ -745,24 +709,24 @@
 
             <!-- SLIDE 5: TRINITY -->
             <section class="slide">
-                <div class="text-center mb-10 md:mb-24 slide-content-anim">
+                <div class="text-center mb-6 md:mb-24 slide-content-anim">
                     <span class="eyebrow">Culinary DNA</span>
-                    <h2 class="text-4xl md:text-6xl font-light">The Trinity of the <span class="text-gold italic font-serif">Hearth</span></h2>
+                    <h2 class="text-3xl md:text-6xl font-light">The Trinity of the <span class="text-gold italic font-serif">Hearth</span></h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 slide-content-anim delay-1">
-                    <div class="text-center group">
-                        <div class="h-32 md:h-56 illustration-frame mb-6 md:mb-10 bg-[#FCFBF7]">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-16 slide-content-anim delay-1">
+                    <div class="text-center group bg-white/50 p-4 lg:p-0">
+                        <div class="h-24 md:h-56 illustration-frame mb-4 md:mb-10 bg-[#FCFBF7]">
                             <div class="ink-wash-bg"></div>
                             <svg class="line-art" viewBox="0 0 100 100">
                                 <path d="M50 90 C 20 90, 20 50, 50 20 C 80 50, 80 90, 50 90 Z" stroke-width="1.2" fill="none"/>
                                 <path d="M50 90 C 35 90, 35 60, 50 40 C 65 60, 65 90, 50 90 Z" stroke="var(--gold)" stroke-width="0.8" fill="none"/>
                             </svg>
                         </div>
-                        <h3 class="text-xl md:text-2xl font-serif text-gold italic mb-2 md:mb-4">I. The Fire</h3>
-                        <p class="text-[10px] md:text-xs font-light leading-loose opacity-60 px-4 md:px-6">Larch and Stone Pine fuel the kitchen. Every dish is seasoned by mountain smoke.</p>
+                        <h3 class="text-xl md:text-2xl font-serif text-gold italic mb-1 md:mb-4">I. The Fire</h3>
+                        <p class="text-[10px] md:text-xs font-light leading-relaxed text-zinc-600 px-4">Larch and Stone Pine fuel the kitchen. Every dish is seasoned by the mountain smoke.</p>
                     </div>
-                    <div class="text-center group">
-                        <div class="h-32 md:h-56 illustration-frame mb-6 md:mb-10 bg-[#FCFBF7]">
+                    <div class="text-center group bg-white/50 p-4 lg:p-0">
+                        <div class="h-24 md:h-56 illustration-frame mb-4 md:mb-10 bg-[#FCFBF7]">
                             <div class="ink-wash-bg"></div>
                             <svg class="line-art" viewBox="0 0 100 100">
                                 <path d="M 50 95 C 50 60, 30 40, 20 20 M 50 95 L 50 10" stroke-width="1.2" fill="none"/>
@@ -770,11 +734,11 @@
                                 <circle cx="70" cy="60" r="5" stroke="var(--gold)" stroke-width="1" fill="none"/>
                             </svg>
                         </div>
-                        <h3 class="text-xl md:text-2xl font-serif text-gold italic mb-2 md:mb-4">II. The Forest</h3>
-                        <p class="text-[10px] md:text-xs font-light leading-loose opacity-60 px-4 md:px-6">Foraged juniper and berries replace heavy fats for a modern, aromatic profile.</p>
+                        <h3 class="text-xl md:text-2xl font-serif text-gold italic mb-1 md:mb-4">II. The Forest</h3>
+                        <p class="text-[10px] md:text-xs font-light leading-relaxed text-zinc-600 px-4">Foraged juniper and berries replace heavy fats for aromatic lightness.</p>
                     </div>
-                    <div class="text-center group">
-                        <div class="h-32 md:h-56 illustration-frame mb-6 md:mb-10 bg-[#FCFBF7]">
+                    <div class="text-center group bg-white/50 p-4 lg:p-0">
+                        <div class="h-24 md:h-56 illustration-frame mb-4 md:mb-10 bg-[#FCFBF7]">
                             <div class="ink-wash-bg"></div>
                             <svg class="line-art" viewBox="0 0 100 100">
                                 <path d="M 40 85 C 40 95, 60 95, 60 85 C 60 75, 55 65, 50 65" stroke-width="1.2" fill="none"/>
@@ -782,38 +746,36 @@
                                 <path d="M 55 70 C 70 60, 90 40, 85 15" stroke-width="1.2" fill="none"/>
                             </svg>
                         </div>
-                        <h3 class="text-xl md:text-2xl font-serif text-gold italic mb-2 md:mb-4">III. The Trophy</h3>
-                        <p class="text-[10px] md:text-xs font-light leading-loose opacity-60 px-4 md:px-6">Rare Proteins: Grisons venison and chamois from hunters with total provenance.</p>
+                        <h3 class="text-xl md:text-2xl font-serif text-gold italic mb-1 md:mb-4">III. The Trophy</h3>
+                        <p class="text-[10px] md:text-xs font-light leading-relaxed text-zinc-600 px-4">Rare Proteins: Grisons venison hand-selected from hunters with total provenance.</p>
                     </div>
                 </div>
             </section>
 
             <!-- SLIDE 6: RITUALS -->
             <section class="slide">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-24 h-full items-center slide-content-anim">
-                    <div class="md:col-span-6 space-y-6 md:space-y-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24 h-full items-center slide-content-anim">
+                    <div class="lg:col-span-6 space-y-6 lg:space-y-12">
                         <span class="eyebrow">Service Theatre</span>
-                        <h2 class="text-4xl md:text-6xl font-light">Primal <span class="text-gold italic font-serif">Rituals</span></h2>
+                        <h2 class="text-4xl lg:text-6xl font-light">Primal <span class="text-gold italic font-serif">Rituals</span></h2>
                         <div class="space-y-2">
                             <div class="ritual-item">
-                                <h4 class="text-xs md:text-sm font-bold uppercase mb-1">01. Blade Gallery</h4>
+                                <h4 class="text-sm font-bold uppercase mb-1">01. Blade Gallery</h4>
                                 <div class="ritual-note">Selecting the tool for the hunt: Artisan knives with local antler handles.</div>
                             </div>
                             <div class="ritual-item">
-                                <h4 class="text-xs md:text-sm font-bold uppercase mb-1">02. Tableside Carving</h4>
+                                <h4 class="text-sm font-bold uppercase mb-1">02. Tableside Carving</h4>
                                 <div class="ritual-note">Whole saddles carved with clinical precision under the guest’s watch.</div>
                             </div>
                         </div>
                     </div>
-                    <div class="md:col-span-6 h-[250px] md:h-[600px] slide-content-anim delay-1">
+                    <div class="lg:col-span-6 h-[250px] lg:h-[600px] slide-content-anim delay-1">
                         <div class="illustration-frame h-full bg-[#FCFBF7]">
                             <div class="ink-wash-bg"></div>
                             <div style="width: 80%; height: 80%; transform: rotate(-15deg) scale(1.1);">
                                 <svg class="line-art" viewBox="0 0 200 200">
                                     <path d="M 30 140 L 150 40 L 160 50 L 40 160 Z" fill="var(--navy)" opacity="0.04" stroke="none" />
                                     <path d="M 20 160 L 110 70 C 140 40, 180 15, 180 15" stroke-width="1.5" fill="none" />
-                                    <path d="M 23 157 L 113 67 C 143 37, 183 12, 183 12" stroke-width="0.5" opacity="0.5" fill="none" />
-                                    <path d="M 40 140 Q 60 130 80 110 T 120 70" stroke-width="0.4" opacity="0.8" />
                                     <path d="M 15 165 L 45 135 L 35 125 L 5 155 Z" stroke="var(--gold)" stroke-width="1.5" fill="none" />
                                 </svg>
                             </div>
@@ -824,8 +786,8 @@
 
             <!-- SLIDE 7: ATMOSPHERE -->
             <section class="slide">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-center h-full slide-content-anim">
-                    <div class="grid grid-cols-2 gap-3 md:gap-4 aspect-square illustration-frame !bg-navy">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center h-full slide-content-anim">
+                    <div class="grid grid-cols-2 gap-3 lg:gap-4 aspect-square illustration-frame !bg-navy">
                         <div class="texture-box bg-[#0B2516]">
                             <div class="texture-overlay opacity-40 mix-blend-overlay" style="background-image: url('https://www.transparenttextures.com/patterns/woven-light.png');"></div>
                             <span class="text-white">Velvet</span>
@@ -840,106 +802,121 @@
                         </div>
                         <div class="texture-box bg-white border border-zinc-200">
                             <div class="texture-overlay opacity-40 mix-blend-multiply" style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');"></div>
-                            <span class="text-zinc-500">Amber</span>
+                            <span class="text-zinc-500 font-bold">Amber</span>
                         </div>
                     </div>
-                    <div class="space-y-6 md:space-y-12 slide-content-anim delay-1">
+                    <div class="space-y-6 lg:space-y-12 slide-content-anim delay-1">
                         <span class="eyebrow">Aesthetic Mood</span>
-                        <h2 class="text-4xl md:text-6xl font-light">Alpine Noir</h2>
-                        <p class="text-xs md:text-sm font-light leading-loose opacity-70">
+                        <h2 class="text-4xl lg:text-6xl font-light">Alpine Noir</h2>
+                        <p class="text-[10px] lg:text-sm font-light leading-loose opacity-70">
                             Stripping away formal stiffness for a sophisticated lounge feel. Tactile stone meets heavy linens and the scent of Swiss Pine.
                         </p>
-                        <div class="flex gap-8 pt-4 md:pt-8 border-t border-navy/10">
+                        <div class="flex gap-8 pt-4 lg:pt-8 border-t border-navy/10">
                             <div><p class="text-[9px] font-bold uppercase tracking-widest text-gold mb-1">Scent</p><p class="text-xs italic">Arve Pine & Embers</p></div>
-                            <div><p class="text-[9px] font-bold uppercase tracking-widest text-gold mb-1">Sound</p><p class="text-xs italic">Mountain Lounge Beats</p></div>
+                            <div><p class="text-[9px] font-bold uppercase tracking-widest text-gold mb-1">Sound</p><p class="text-xs italic">Mountain Beats</p></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 8: FINANCIALS -->
+            <!-- SLIDE 8: STRATEGIC YIELD (FULL DATASET) -->
             <section class="slide">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-24 h-full items-center slide-content-anim">
-                    <div class="md:col-span-5 space-y-6 md:space-y-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24 h-full items-center slide-content-anim">
+                    <div class="lg:col-span-5 space-y-6 lg:space-y-12">
                         <span class="eyebrow">Growth Potential</span>
-                        <h2 class="text-4xl md:text-6xl font-light italic">Strategic <br><span class="text-gold font-serif font-bold">Yield</span></h2>
+                        <h2 class="text-4xl lg:text-6xl font-light italic">Strategic <br><span class="text-gold font-serif font-bold">Yield</span></h2>
                         <div class="stats-grid">
-                            <div class="stat-card !p-4 md:!p-6">
-                                <h4 class="text-[8px] font-bold opacity-30 mb-1 uppercase">Avg. Check</h4>
-                                <div class="text-lg md:text-2xl font-bold">+20%</div>
+                            <div class="stat-card !p-4">
+                                <h4 class="text-[8px] font-bold opacity-30 mb-1 uppercase tracking-widest">Avg. Check Growth</h4>
+                                <div class="text-lg lg:text-3xl font-bold">+20%</div>
                             </div>
-                            <div class="stat-card !p-4 md:!p-6">
-                                <h4 class="text-[8px] font-bold opacity-30 mb-1 uppercase">Retention</h4>
-                                <div class="text-lg md:text-2xl font-bold">42%</div>
+                            <div class="stat-card !p-4">
+                                <h4 class="text-[8px] font-bold opacity-30 mb-1 uppercase tracking-widest">Retention</h4>
+                                <div class="text-lg lg:text-3xl font-bold">42%</div>
                             </div>
                         </div>
                     </div>
-                    <div class="md:col-span-7 bg-white p-6 md:p-12 border border-navy/5 shadow-2xl h-[300px] md:h-[500px] flex flex-col slide-content-anim delay-1">
-                        <h4 class="text-[8px] md:text-[9px] font-bold tracking-[0.3em] md:tracking-[0.4em] opacity-30 mb-8 uppercase text-center w-full">Projected RevPAS Yield Growth</h4>
-                        <div class="w-full flex items-end justify-between gap-4 md:gap-6 h-full border-b border-[#001F33]/20 relative mt-auto pb-1">
+                    <div class="lg:col-span-7 bg-white p-6 lg:p-12 border border-navy/5 shadow-2xl h-[300px] lg:h-[500px] flex flex-col slide-content-anim delay-1">
+                        <h4 class="text-[8px] lg:text-[9px] font-bold tracking-[0.3em] lg:tracking-[0.4em] opacity-30 mb-8 uppercase text-center w-full">Projected RevPAS Yield Growth (CHF)</h4>
+                        
+                        <div class="w-full flex items-end justify-between gap-3 lg:gap-6 h-full border-b border-[#001F33]/20 relative mt-auto pb-1">
                             <div class="flex-1 flex flex-col justify-end items-center h-full relative group cursor-crosshair">
                                 <div class="chart-bar bg-[#001F33]/5 w-full group-hover:bg-gold group-hover:shadow-md" style="--final-height: 35%">
-                                    <div class="interactive-tooltip">Soft opening. Focusing on butchery and fire rituals.</div>
-                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold opacity-40 group-hover:opacity-100">125</span>
+                                    <div class="interactive-tooltip">Initial Launch: Focusing on butchery and fire rituals.</div>
+                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold opacity-40 group-hover:opacity-100 transition-all">125</span>
                                 </div>
-                                <span class="absolute -bottom-6 text-[8px] font-bold uppercase opacity-30">Q1 26</span>
+                                <span class="absolute -bottom-6 text-[7px] lg:text-[8px] font-bold uppercase opacity-30">Q1 26</span>
                             </div>
                             <div class="flex-1 flex flex-col justify-end items-center h-full relative group cursor-crosshair">
                                 <div class="chart-bar bg-[#001F33]/10 w-full group-hover:bg-gold group-hover:shadow-md" style="--final-height: 55%">
                                     <div class="interactive-tooltip">Summer upsell with premium foraged ingredients.</div>
-                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold opacity-40 group-hover:opacity-100">145</span>
+                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold opacity-40 group-hover:opacity-100 transition-all">145</span>
                                 </div>
-                                <span class="absolute -bottom-6 text-[8px] font-bold uppercase opacity-30">Q2 26</span>
+                                <span class="absolute -bottom-6 text-[7px] lg:text-[8px] font-bold uppercase opacity-30">Q2 26</span>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-end items-center h-full relative group cursor-crosshair">
+                                <div class="chart-bar bg-[#001F33]/15 w-full group-hover:bg-gold group-hover:shadow-md" style="--final-height: 50%">
+                                    <div class="interactive-tooltip">Shoulder season: Focusing on preserved stocks and aging.</div>
+                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold opacity-40 group-hover:opacity-100 transition-all">140</span>
+                                </div>
+                                <span class="absolute -bottom-6 text-[7px] lg:text-[8px] font-bold uppercase opacity-30">Q3 26</span>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-end items-center h-full relative group cursor-crosshair">
+                                <div class="chart-bar bg-[#001F33]/20 w-full group-hover:bg-gold group-hover:shadow-md" style="--final-height: 75%">
+                                    <div class="interactive-tooltip">Season commencement: High volume global influx.</div>
+                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold opacity-40 group-hover:opacity-100 transition-all">185</span>
+                                </div>
+                                <span class="absolute -bottom-6 text-[7px] lg:text-[8px] font-bold uppercase opacity-30">Q4 26</span>
                             </div>
                             <div class="flex-1 flex flex-col justify-end items-center h-full relative group cursor-crosshair">
                                 <div class="chart-bar bg-gold w-full group-hover:bg-navy group-hover:shadow-lg" style="--final-height: 100%">
                                     <div class="interactive-tooltip">Peak Season. Maximum exclusivity drives highest yield.</div>
-                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-navy group-hover:text-gold">230</span>
+                                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-navy group-hover:text-gold transition-all">230</span>
                                 </div>
-                                <span class="absolute -bottom-6 text-[8px] font-bold uppercase opacity-80 text-gold">Q1 27</span>
+                                <span class="absolute -bottom-6 text-[7px] lg:text-[8px] font-bold uppercase opacity-80 text-gold group-hover:text-navy transition-colors">Q1 27</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 9: ROADMAP -->
+            <!-- SLIDE 9: ROADMAP (MOBILE OPTIMIZED) -->
             <section class="slide">
                 <div class="flex flex-col items-center text-center slide-content-anim w-full">
                     <span class="eyebrow mb-8 md:mb-12">The Debut</span>
-                    <h2 class="text-4xl md:text-8xl leading-tight mb-12 md:mb-20">Launching the <br><span class="text-gold italic font-serif">Legend</span></h2>
+                    <h2 class="text-4xl lg:text-8xl leading-tight mb-8 md:mb-20">Launching the <br><span class="text-gold italic font-serif">Legend</span></h2>
                     
-                    <div class="w-full max-w-5xl relative flex flex-col md:flex-row justify-between gap-12 md:gap-0 mt-8 md:mt-0">
+                    <div class="w-full max-w-5xl relative flex flex-col lg:flex-row justify-between gap-10 lg:gap-0 mt-4 md:mt-0 pb-16 lg:pb-0">
                         <!-- Connector line - Hidden on mobile -->
-                        <div class="hidden md:block absolute top-[1.5rem] left-0 w-full h-[1px] bg-navy/10"></div>
+                        <div class="hidden lg:block absolute top-[1.5rem] left-0 w-full h-[1px] bg-navy/10"></div>
                         
                         <!-- Phase I -->
-                        <div class="flex flex-row md:flex-col items-center gap-6 md:gap-0 w-full md:w-72 relative group cursor-crosshair">
-                            <div class="w-6 h-6 md:w-3 md:h-3 flex-shrink-0 rounded-full bg-navy relative z-10 ring-4 ring-parchment transition-all duration-300 group-hover:bg-gold group-hover:scale-150"></div>
-                            <div class="text-left md:text-center mt-0 md:mt-8">
-                                <h4 class="text-xs md:text-sm font-bold uppercase tracking-widest text-navy transition-colors duration-300 group-hover:text-gold">Foundations</h4>
-                                <div class="static md:absolute top-12 left-1/2 md:-translate-x-1/2 w-full md:w-64 mt-2 md:mt-0 opacity-100 md:opacity-0 md:invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-0 md:translate-y-2 group-hover:translate-y-0 z-20">
-                                    <p class="text-[10px] font-medium leading-relaxed bg-white md:bg-white/95 md:backdrop-blur-sm p-3 md:p-4 rounded md:shadow-xl border border-navy/10 text-navy">Securing exclusive hunter partnerships and finalizing "Alpine Noir" architecture.</p>
+                        <div class="flex flex-row lg:flex-col items-center gap-6 lg:gap-0 w-full lg:w-72 relative group cursor-crosshair">
+                            <div class="w-6 h-6 lg:w-3 lg:h-3 flex-shrink-0 rounded-full bg-navy relative z-10 ring-4 ring-[#FCFBF7] transition-all duration-300 group-hover:bg-gold group-hover:scale-150"></div>
+                            <div class="text-left lg:text-center mt-0 lg:mt-8">
+                                <h4 class="text-xs lg:text-sm font-bold uppercase tracking-widest text-navy transition-colors duration-300 group-hover:text-gold">Foundations</h4>
+                                <div class="static lg:absolute top-12 left-1/2 lg:-translate-x-1/2 w-full lg:w-64 mt-2 lg:mt-0 opacity-100 lg:opacity-0 lg:invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-0 lg:translate-y-2 group-hover:translate-y-0 z-20">
+                                    <p class="text-[9px] lg:text-[10px] font-medium leading-relaxed bg-white lg:bg-white/95 lg:backdrop-blur-sm p-3 lg:p-4 rounded lg:shadow-xl border border-navy/10 text-navy">Securing exclusive hunter partnerships and finalizing "Alpine Noir" architecture.</p>
                                 </div>
                             </div>
                         </div>
                         <!-- Phase II -->
-                        <div class="flex flex-row md:flex-col items-center gap-6 md:gap-0 w-full md:w-72 relative group cursor-crosshair">
-                            <div class="w-6 h-6 md:w-3 md:h-3 flex-shrink-0 rounded-full bg-navy relative z-10 ring-4 ring-parchment transition-all duration-300 group-hover:bg-gold group-hover:scale-150"></div>
-                            <div class="text-left md:text-center mt-0 md:mt-8">
-                                <h4 class="text-xs md:text-sm font-bold uppercase tracking-widest text-navy transition-colors duration-300 group-hover:text-gold">The Debut</h4>
-                                <div class="static md:absolute top-12 left-1/2 md:-translate-x-1/2 w-full md:w-64 mt-2 md:mt-0 opacity-100 md:opacity-0 md:invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-0 md:translate-y-2 group-hover:translate-y-0 z-20">
-                                    <p class="text-[10px] font-medium leading-relaxed bg-white md:bg-white/95 md:backdrop-blur-sm p-3 md:p-4 rounded md:shadow-xl border border-navy/10 text-navy">Curated soft-opening for VIPs, transitioning to full service for winter season.</p>
+                        <div class="flex flex-row lg:flex-col items-center gap-6 lg:gap-0 w-full lg:w-72 relative group cursor-crosshair">
+                            <div class="w-6 h-6 lg:w-3 lg:h-3 flex-shrink-0 rounded-full bg-navy relative z-10 ring-4 ring-[#FCFBF7] transition-all duration-300 group-hover:bg-gold group-hover:scale-150"></div>
+                            <div class="text-left lg:text-center mt-0 lg:mt-8">
+                                <h4 class="text-xs lg:text-sm font-bold uppercase tracking-widest text-navy transition-colors duration-300 group-hover:text-gold">The Debut</h4>
+                                <div class="static lg:absolute top-12 left-1/2 lg:-translate-x-1/2 w-full lg:w-64 mt-2 lg:mt-0 opacity-100 lg:opacity-0 lg:invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-0 lg:translate-y-2 group-hover:translate-y-0 z-20">
+                                    <p class="text-[9px] lg:text-[10px] font-medium leading-relaxed bg-white lg:bg-white/95 lg:backdrop-blur-sm p-3 lg:p-4 rounded lg:shadow-xl border border-navy/10 text-navy">Curated soft-opening for VIPs, transitioning to full service for winter season.</p>
                                 </div>
                             </div>
                         </div>
                         <!-- Phase III -->
-                        <div class="flex flex-row md:flex-col items-center gap-6 md:gap-0 w-full md:w-72 relative group cursor-crosshair">
-                            <div class="w-6 h-6 md:w-4 md:h-4 flex-shrink-0 rounded-full bg-gold relative md:-top-0.5 z-10 ring-4 ring-parchment animate-pulse group-hover:scale-125 transition-transform"></div>
-                            <div class="text-left md:text-center mt-0 md:mt-8">
-                                <h4 class="text-xs md:text-sm font-bold uppercase tracking-widest text-gold">The Legacy</h4>
-                                <div class="static md:absolute top-12 left-1/2 md:-translate-x-1/2 w-full md:w-64 mt-2 md:mt-0 opacity-100 md:opacity-0 md:invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-0 md:translate-y-2 group-hover:translate-y-0 z-20">
-                                    <p class="text-[10px] font-medium leading-relaxed bg-white md:bg-white/95 md:backdrop-blur-sm p-3 md:p-4 rounded md:shadow-xl border border-gold/30 text-navy text-center md:text-left">Establishing SILVA as the definitive modern Alpine destination with global accolades.</p>
+                        <div class="flex flex-row lg:flex-col items-center gap-6 lg:gap-0 w-full lg:w-72 relative group cursor-crosshair">
+                            <div class="w-6 h-6 lg:w-4 lg:h-4 flex-shrink-0 rounded-full bg-gold relative lg:-top-0.5 z-10 ring-4 ring-[#FCFBF7] animate-pulse group-hover:scale-125 transition-transform"></div>
+                            <div class="text-left lg:text-center mt-0 lg:mt-8">
+                                <h4 class="text-xs lg:text-sm font-bold uppercase tracking-widest text-gold">The Legacy</h4>
+                                <div class="static lg:absolute top-12 left-1/2 lg:-translate-x-1/2 w-full lg:w-64 mt-2 lg:mt-0 opacity-100 lg:opacity-0 lg:invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-0 lg:translate-y-2 group-hover:translate-y-0 z-20">
+                                    <p class="text-[9px] lg:text-[10px] font-medium leading-relaxed bg-white lg:bg-white/95 lg:backdrop-blur-sm p-3 lg:p-4 rounded lg:shadow-xl border border-gold/30 text-navy">Establishing SILVA as the definitive modern Alpine destination with global accolades.</p>
                                 </div>
                             </div>
                         </div>
@@ -972,7 +949,7 @@
 
             function initEmbers() {
                 const container = document.getElementById('ember-container');
-                const count = window.innerWidth < 768 ? 15 : 30; // Fewer embers on mobile
+                const count = window.innerWidth < 1024 ? 15 : 30; 
                 for(let i=0; i<count; i++) {
                     const ember = document.createElement('div');
                     ember.className = 'ember';
@@ -992,7 +969,7 @@
                 slides.forEach((slide, idx) => {
                     if (idx === currentSlide) {
                         slide.classList.add('active');
-                        slide.scrollTop = 0; // Reset scroll on slide change
+                        slide.scrollTop = 0; 
                     } else {
                         slide.classList.remove('active');
                     }

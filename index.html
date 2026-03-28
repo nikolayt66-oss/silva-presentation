@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILVA | The Alpine Hearth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001F33',
+                        gold: '#A67C00',
+                        parchment: '#FCFBF7'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --navy: #001F33;
+            --gold: #A67C00;
+            --gold-light: #C5A059;
+            --parchment: #FCFBF7;
+            --border-muted: rgba(0, 31, 51, 0.08);
+            --transition-main: 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; cursor: crosshair; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #E2E8F0;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--navy);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* 1. EDITORIAL WRAPPER */
+        .deck-wrapper {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FCFBF7 0%, #F2EFE9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deck-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 6rem; width: 1px; height: 100%;
+            background: var(--border-muted);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Ambient Embers */
+        .embers {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .ember {
+            position: absolute;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(1.5px);
+            animation: rise 15s infinite linear;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(110vh) translateX(0); opacity: 0; }
+            20% { opacity: 0.25; }
+            80% { opacity: 0.1; }
+            100% { transform: translateY(-10vh) translateX(60px); opacity: 0; }
+        }
+
+        /* 2. SLIDE ENGINE */
+        .slides-rail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            padding: 6rem 10rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        /* 3. TYPOGRAPHY */
+        h1 { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: -0.02em; }
+        .eyebrow { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5em; color: var(--gold); margin-bottom: 1.5rem; display: block; }
+        .marginalia { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; opacity: 0.4; }
+
+        /* 4. NAVIGATION BAR */
+        .ui-persistent {
+            position: fixed;
+            bottom: 3rem;
+            width: 100%;
+            padding: 0 6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .index-trigger {
+            background: transparent;
+            border: 1px solid var(--border-muted);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            transition: 0.3s;
+            display: flex;
+            align-items: center; gap: 1.5rem;
+        }
+        .index-trigger:hover { border-color: var(--gold); background: white; }
+
+        .nav-btn {
+            width: 3rem; height: 3rem;
+            border: 1px solid var(--border-muted);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s; background: white;
+        }
+        .nav-btn:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+        /* 5. DROP DOWN MENU */
+        .menu-container { position: relative; }
+        .dropdown-content {
+            position: absolute;
+            bottom: 130%; left: 0;
+            background: white;
+            min-width: 300px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.08);
+            opacity: 0; visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.5s var(--transition-main);
+            padding: 1rem 0;
+            border: 1px solid var(--border-muted);
+        }
+        .menu-container:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-content button {
+            width: 100%; padding: 0.8rem 2rem; text-align: left;
+            font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--navy);
+            transition: 0.3s; border: none; background: transparent;
+        }
+        .dropdown-content button:hover { color: var(--gold); padding-left: 2.5rem; }
+
+        /* 6. ILLUSTRATION FRAMES */
+        .illustration-frame {
+            background: white;
+            padding: 1rem;
+            border: 1px solid var(--border-muted);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.04);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .illustration-frame::after {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid rgba(166, 124, 0, 0.15);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .ink-wash-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(166, 124, 0, 0.08) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 31, 51, 0.03) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .line-art {
+            width: 100%;
+            height: 100%;
+            stroke: var(--navy);
+            stroke-width: 1;
+            fill: none;
+            z-index: 1;
+            opacity: 0.85;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 1.5s var(--transition-main), stroke 0.5s ease;
+            filter: url(#rough-ink);
+        }
+        
+        .illustration-frame:hover .line-art {
+            transform: scale(1.05);
+            stroke: var(--gold);
+        }
+
+        /* 7. ENTRANCE ANIMATIONS */
+        .slide-content-anim {
+            opacity: 0; transform: translateY(20px);
+            transition: all 1s var(--transition-main);
+        }
+        .slide.active .slide-content-anim { 
+            opacity: 1; transform: translateY(0); 
+            transition-delay: 0.1s; 
+        }
+        .slide.active .delay-1 { transition-delay: 0.2s; }
+
+        /* 8. DATA COMPONENTS */
+        .stat-card {
+            background: rgba(255,255,255,0.4);
+            border: 1px solid var(--border-muted);
+            padding: 2rem;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card:hover { background: white; border-color: var(--gold); transform: translateY(-5px); }
+
+        .progress-bead-container { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .bead { width: 4px; height: 4px; border-radius: 50%; background: var(--navy); opacity: 0.1; transition: 0.4s; }
+        .bead.active { opacity: 1; background: var(--gold); transform: scale(1.5); }
+
+        .quadrant {
+            aspect-ratio: 1;
+            border: 1px solid var(--border-muted);
+            position: relative;
+            background: white;
+        }
+
+        .chart-bar {
+            height: 0%;
+            transition: height 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67), background-color 0.3s ease;
+            width: 100%;
+            position: relative;
+        }
+        .slide.active .chart-bar { height: var(--final-height); transition-delay: 0.4s; }
+
+        /* INTERACTIVE TOOLTIPS */
+        .interactive-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background: var(--navy);
+            color: var(--parchment);
+            padding: 0.75rem 1rem;
+            font-size: 0.55rem;
+            width: max-content;
+            max-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            pointer-events: none;
+            border: 1px solid var(--gold);
+            line-height: 1.5;
+            z-index: 50;
+            margin-bottom: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .interactive-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%; left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--navy) transparent transparent transparent;
+        }
+        .group:hover .interactive-tooltip {
+            opacity: 1; visibility: visible;
+            transform: translate(-50%, -5px);
+        }
+
+        /* TEXTURES */
+        .texture-box {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            overflow: hidden;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .texture-box span {
+            position: relative; z-index: 10;
+            font-size: 8px; text-transform: uppercase;
+            letter-spacing: 0.4em; font-weight: bold;
+        }
+        .texture-overlay {
+            position: absolute; inset: 0; pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
+        <defs>
+            <filter id="rough-ink" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                <feGaussianBlur in="displaced" stdDeviation="0.3" result="blurred" />
+                <feMerge>
+                    <feMergeNode in="blurred" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="deck-wrapper">
+        <div class="embers" id="ember-container"></div>
+
+        <!-- Navigation UI -->
+        <div class="ui-persistent">
+            <div class="flex flex-col gap-2">
+                <div class="menu-container">
+                    <button class="index-trigger">
+                        <span class="text-[8px]">00</span>
+                        <span>INDEX</span>
+                        <i class="fas fa-plus opacity-40"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <button onclick="goToSlide(0)">01. Vision</button>
+                        <button onclick="goToSlide(1)">02. Nomenclature</button>
+                        <button onclick="goToSlide(2)">03. Strategic Gap</button>
+                        <button onclick="goToSlide(3)">04. Benchmarks</button>
+                        <button onclick="goToSlide(4)">05. Trinity</button>
+                        <button onclick="goToSlide(5)">06. Theatre</button>
+                        <button onclick="goToSlide(6)">07. Alpine Noir</button>
+                        <button onclick="goToSlide(7)">08. Yield</button>
+                        <button onclick="goToSlide(8)">09. Path</button>
+                    </div>
+                </div>
+                <div class="progress-bead-container" id="bead-rail"></div>
+            </div>
+            
+            <div class="flex gap-12 items-center">
+                <div class="text-right">
+                    <div class="marginalia" id="slide-label">The Vision</div>
+                    <div class="text-[10px] tracking-widest font-bold opacity-20 mt-1" id="indicator">01 / 09</div>
+                </div>
+                <div class="nav-controls flex gap-3">
+                    <button class="nav-btn" onclick="changeSlide(-1)"><i class="fas fa-arrow-left text-[10px]"></i></button>
+                    <button class="nav-btn" onclick="changeSlide(1)"><i class="fas fa-arrow-right text-[10px]"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="slides-rail" id="rail">
+            
+            <!-- SLIDE 1: VISION -->
+            <section class="slide active">
+                <div class="grid grid-cols-12 gap-12 h-full items-center slide-content-anim">
+                    <div class="col-span-7 space-y-12">
+                        <div>
+                            <span class="eyebrow">Engadine | MMXXVI</span>
+                            <h1 class="text-8xl leading-[0.95] mb-8">SILVA</h1>
+                            <h2 class="text-3xl font-serif text-gold italic">The town's most sophisticated<br>hearth-driven experience</h2>
+                        </div>
+                        <div class="border-l border-navy/10 pl-10 py-2 max-w-lg">
+                            <p class="text-xl font-light leading-relaxed italic opacity-70">
+                                "Rooted in the boundary where the town meets the primal cold of the high mountains."
+                            </p>
+                        </div>
+                        <p class="text-sm font-light leading-loose opacity-80 max-w-lg">
+                            SILVA bridges the gap between the glacier's cold and the social season's heat, moving away from Global Fine Dining to <strong class="text-gold font-bold">Hyper-Local Primal Luxury</strong>.
+                        </p>
+                    </div>
+                    <div class="col-span-5 h-[650px] slide-content-anim delay-1">
+                        <div class="illustration-frame h-full bg-parchment">
+                            <div class="ink-wash-bg"></div>
+                            <svg class="line-art" viewBox="0 0 200 200">
+                                <circle cx="100" cy="110" r="50" fill="var(--gold)" opacity="0.05" stroke="none" />
+                                <path d="M 10 180 L 50 100 L 80 140 L 140 70 L 190 180" stroke-width="1.5" />
+                                <path d="M 100 140 C 90 115, 85 95, 95 75 C 100 70, 105 70, 110 80 C 115 90, 115 110, 100 140 Z" stroke-width="2" fill="var(--parchment)" />
+                                <path d="M 95 75 C 80 50, 50 40, 30 25" stroke-width="1.5" />
+                                <path d="M 110 80 C 125 55, 155 45, 175 30" stroke-width="1.5" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: NOMENCLATURE -->
+            <section class="slide">
+                <div class="grid grid-cols-12 gap-20 items-center h-full slide-content-anim">
+                    <div class="col-span-5 h-[550px]">
+                        <div class="illustration-frame h-full bg-parchment">
+                            <div class="ink-wash-bg"></div>
+                            <svg class="line-art" viewBox="0 0 200 200">
+                                <path d="M 10 180 Q 80 120 180 30" stroke-width="2.5" />
+                                <g stroke-width="0.6" opacity="0.8">
+                                    <path d="M 40 155 Q 20 120 10 100 M 45 150 Q 30 110 20 90 M 55 145 Q 40 100 25 80" />
+                                    <path d="M 120 85 Q 100 45 85 25 M 140 70 Q 120 30 105 10" />
+                                </g>
+                                <path d="M 110 130 C 130 120, 140 150, 115 170 C 90 150, 95 125, 110 130 Z" stroke-width="1.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col-span-7 space-y-12 slide-content-anim delay-1">
+                        <span class="eyebrow">Etymology</span>
+                        <h2 class="text-6xl leading-tight italic font-light">Suggested <span class="text-gold font-serif font-bold">Nomenclature</span></h2>
+                        <div class="pt-8 grid grid-cols-2 gap-4 max-w-md">
+                            <div class="name-card group relative cursor-crosshair">
+                                <div class="interactive-tooltip">
+                                    <strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">The Arve Pine</strong>
+                                    A symbol of Alpine resilience and primary aromatic wood.
+                                </div>
+                                <h5 class="font-bold text-navy text-xs mb-1 uppercase">Arva</h5>
+                                <p class="text-[8px] opacity-40 uppercase tracking-widest">Stone Pine</p>
+                            </div>
+                            <div class="name-card group relative cursor-crosshair">
+                                <div class="interactive-tooltip">
+                                    <strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">The Embers</strong>
+                                    Ancient Romansh heritage and the glowing heart of the kitchen.
+                                </div>
+                                <h5 class="font-bold text-navy text-xs mb-1 uppercase">S-chira</h5>
+                                <p class="text-[8px] opacity-40 uppercase tracking-widest">Embers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: MARKET GAP -->
+            <section class="slide">
+                <div class="grid grid-cols-2 gap-24 h-full items-center slide-content-anim">
+                    <div class="space-y-12">
+                        <span class="eyebrow">Commercial Space</span>
+                        <h2 class="text-6xl font-light">The Strategic <br><span class="text-gold italic font-serif">Avenue</span></h2>
+                        <div class="stat-card max-w-sm">
+                            <p class="text-xs italic leading-loose">"Wild game yields 20% higher check-premiums than standard prime cuts."</p>
+                        </div>
+                    </div>
+                    <div class="quadrant w-full p-12 bg-white shadow-xl relative slide-content-anim delay-1">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                            <div class="w-full h-[1px] bg-navy"></div><div class="h-full w-[1px] bg-navy"></div>
+                        </div>
+                        <span class="axis-label top-4 left-1/2 -translate-x-1/2 z-10 bg-white/80 px-2 rounded">Modern</span>
+                        <span class="axis-label bottom-4 left-1/2 -translate-x-1/2 z-10 bg-white/80 px-2 rounded">Traditional</span>
+                        
+                        <!-- Interactive Comp Matrix -->
+                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 18%; left: 18%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip"><strong class="text-gold uppercase tracking-widest text-[8px] block mb-1">The Blue Ocean</strong>Maximum locality paired with progressive execution.</div>
+                            <div class="w-4 h-4 bg-gold rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                            <span class="text-[10px] font-bold mt-2 text-gold tracking-widest bg-white/90 px-2 rounded shadow-sm">SILVA</span>
+                        </div>
+                        <div class="absolute flex flex-col items-center z-10 group cursor-crosshair" style="top: 30%; left: 80%; transform: translate(-50%, -50%);">
+                            <div class="interactive-tooltip">Global luxury brands with zero local narrative.</div>
+                            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full"></div>
+                            <span class="text-[8px] text-slate-500 uppercase mt-2 font-bold bg-white/80 px-1">Beefbar / Zuma</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: BENCHMARKS -->
+            <section class="slide">
+                <div class="flex justify-between items-end mb-16 slide-content-anim">
+                    <h2 class="text-5xl font-light">Global <span class="text-gold italic">Benchmarks</span></h2>
+                    <span class="marginalia">Proven Concept Validation</span>
+                </div>
+                <div class="grid grid-cols-4 gap-8 slide-content-anim delay-1">
+                    <a href="https://theledbury.com" target="_blank" class="stat-card !p-0 overflow-hidden flex flex-col group block no-underline text-current">
+                        <div class="h-40 border-b border-muted bg-parchment flex items-center justify-center">
+                            <svg class="line-art p-8" viewBox="0 0 100 100"><path d="M 20 80 Q 50 50 80 20" stroke-width="2"/></svg>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h4 class="font-bold text-sm mb-1">The Ledbury</h4>
+                            <p class="text-[10px] text-gold font-bold uppercase mb-4 tracking-widest">London</p>
+                            <span class="text-[9px] font-bold border-b border-gold self-start uppercase mt-4 text-gold">Visit Website &rarr;</span>
+                        </div>
+                    </a>
+                    <a href="https://schauenstein.ch" target="_blank" class="stat-card !p-0 overflow-hidden flex flex-col group block no-underline text-current">
+                        <div class="h-40 border-b border-muted bg-parchment flex items-center justify-center">
+                            <svg class="line-art p-8" viewBox="0 0 100 100"><path d="M 10 90 L 50 30 L 90 90" stroke-width="1.5"/></svg>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h4 class="font-bold text-sm mb-1">Schauenstein</h4>
+                            <p class="text-[10px] text-gold font-bold uppercase mb-4 tracking-widest">Switzerland</p>
+                            <span class="text-[9px] font-bold border-b border-gold self-start uppercase mt-4 text-gold">Visit Website &rarr;</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: TRINITY -->
+            <section class="slide">
+                <div class="text-center mb-24 slide-content-anim">
+                    <span class="eyebrow">Culinary DNA</span>
+                    <h2 class="text-6xl font-light">The Trinity of the <span class="text-gold italic font-serif">Hearth</span></h2>
+                </div>
+                <div class="grid grid-cols-3 gap-16 slide-content-anim delay-1 text-center">
+                    <div class="space-y-6">
+                        <div class="h-40 illustration-frame mb-6 bg-parchment">
+                            <svg class="line-art p-8" viewBox="0 0 100 100"><path d="M50 90 C 20 90, 20 50, 50 20 C 80 50, 80 90, 50 90 Z" stroke-width="1.2"/></svg>
+                        </div>
+                        <h3 class="text-2xl italic">The Fire</h3>
+                        <p class="text-xs font-light text-zinc-500">Larch and Stone Pine fuel the open-flame kitchen.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="h-40 illustration-frame mb-6 bg-parchment">
+                            <svg class="line-art p-8" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" stroke-width="1.2" /><path d="M50 20 L50 80 M20 50 L80 50" stroke-width="0.6"/></svg>
+                        </div>
+                        <h3 class="text-2xl italic">The Forest</h3>
+                        <p class="text-xs font-light text-zinc-500">Foraged juniper and berries replace heavy fats.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: RITUALS -->
+            <section class="slide">
+                <div class="grid grid-cols-12 gap-24 h-full items-center slide-content-anim">
+                    <div class="col-span-6 space-y-12">
+                        <h2 class="text-6xl font-light">Primal <span class="text-gold italic font-serif">Rituals</span></h2>
+                        <div class="space-y-6">
+                            <div class="ritual-item">
+                                <h4 class="text-sm font-bold uppercase mb-1">01. Blade Gallery</h4>
+                                <div class="ritual-note">Selecting a handcrafted knife from a bespoke local antler chest.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-6 h-[500px] illustration-frame bg-parchment">
+                        <svg class="line-art p-12" viewBox="0 0 200 200" style="transform: rotate(-15deg);"><path d="M 20 160 L 110 70 C 140 40, 180 15, 180 15 C 160 30, 130 60, 40 180 Z" stroke-width="1.5"/></svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: ATMOSPHERE -->
+            <section class="slide">
+                <h2 class="text-4xl mb-12 border-b border-zinc-200 pb-4 font-light">Alpine Noir: <span class="text-gold italic">Quiet Luxury</span></h2>
+                <div class="grid grid-cols-2 gap-20 items-center">
+                    <div class="grid grid-cols-2 gap-4 aspect-square">
+                        <div class="texture-box bg-[#0B2516]">
+                            <div class="texture-overlay opacity-40 mix-blend-overlay" style="background-image: url('https://www.transparenttextures.com/patterns/woven-light.png');"></div>
+                            <span class="text-white">Velvet</span>
+                        </div>
+                        <div class="texture-box bg-[#333]">
+                            <div class="texture-overlay opacity-50 mix-blend-overlay" style="background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');"></div>
+                            <span class="text-white">Stone</span>
+                        </div>
+                        <div class="texture-box bg-[#B87333]">
+                            <div class="texture-overlay opacity-40 mix-blend-overlay" style="background-image: url('https://www.transparenttextures.com/patterns/brushed-alum.png');"></div>
+                            <span class="text-white">Copper</span>
+                        </div>
+                        <div class="texture-box bg-white border border-zinc-200">
+                            <div class="texture-overlay opacity-40 mix-blend-multiply" style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');"></div>
+                            <span class="text-zinc-500">Amber Glow</span>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <h3 class="text-3xl italic gold-text">Aesthetic Mood</h3>
+                        <p class="text-sm font-light leading-loose text-zinc-600">Stripping away formal stiffness for a sophisticated lounge feel. Tactile stone meets heavy linens and Swiss Pine scent.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: FINANCIALS -->
+            <section class="slide">
+                <h2 class="text-4xl mb-12 border-b border-zinc-200 pb-4 font-light">Commercial <span class="text-gold italic">Yield</span></h2>
+                <div class="grid grid-cols-12 gap-12">
+                    <div class="col-span-5 flex flex-col justify-center gap-4">
+                        <div class="stat-card">Avg. Check Growth <div class="text-3xl font-serif">+20%</div></div>
+                        <div class="stat-card">Target Retention <div class="text-3xl font-serif">42%</div></div>
+                    </div>
+                    <div class="col-span-7 bg-white p-8 border border-zinc-100 shadow-xl flex flex-col h-[400px]">
+                        <h4 class="text-center text-[10px] uppercase opacity-30 mb-8">Projected RevPAS Growth</h4>
+                        <div class="flex-grow flex items-end justify-between gap-4 border-b border-navy/20 relative pb-1">
+                            <div class="flex-1 flex flex-col justify-end group cursor-crosshair h-full">
+                                <div class="chart-bar bg-navy/10 group-hover:bg-gold" style="--final-height: 55%"><div class="interactive-tooltip">Market expansion.</div></div>
+                                <span class="text-[8px] mt-2 text-center opacity-40">Q2 26</span>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-end group cursor-crosshair h-full">
+                                <div class="chart-bar bg-gold" style="--final-height: 100%"><div class="interactive-tooltip">Peak St. Moritz Season.</div></div>
+                                <span class="text-[8px] mt-2 text-center text-gold font-bold">Q1 27</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: ROADMAP -->
+            <section class="slide">
+                <div class="flex flex-col items-center text-center slide-content-anim w-full">
+                    <span class="eyebrow mb-12">The Debut</span>
+                    <h2 class="text-8xl leading-tight mb-20">Launching the <br><span class="text-gold italic font-serif">Legend</span></h2>
+                    
+                    <div class="w-full max-w-5xl relative h-[1px] bg-navy/10 my-20">
+                        <div class="flex justify-between absolute -top-1.5 left-0 w-full px-12">
+                            <div class="flex flex-col items-center w-48 group cursor-crosshair">
+                                <div class="w-3 h-3 rounded-full bg-navy ring-4 ring-parchment transition-all group-hover:bg-gold group-hover:scale-150"></div>
+                                <h4 class="mt-8 text-xs font-bold uppercase text-navy transition-colors group-hover:text-gold">Phase I: Foundations</h4>
+                                <div class="absolute top-12 left-1/2 -translate-x-1/2 w-64 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                                    <p class="text-[10px] bg-white p-4 rounded shadow-xl border text-navy">Securing partnerships with Grisons hunters and finalizing the architectural buildout.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center w-48 group cursor-crosshair">
+                                <div class="w-4 h-4 rounded-full bg-gold ring-4 ring-parchment animate-pulse group-hover:scale-125"></div>
+                                <h4 class="mt-7 text-xs font-bold uppercase text-gold">Phase III: The Legacy</h4>
+                                <div class="absolute top-12 left-1/2 -translate-x-1/2 w-64 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                                    <p class="text-[10px] bg-white p-4 rounded shadow-xl border text-navy border-gold/30">Pursuing international culinary accolades and establishing SILVA as a definitive destination.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            let current = 0;
+            const total = 9;
+            const rail = document.getElementById('rail');
+            const indicator = document.getElementById('indicator');
+            const labelEl = document.getElementById('slide-label');
+            const labels = ["The Vision", "Nomenclature", "Strategic Gap", "Benchmarks", "Trinity", "Interactive Rituals", "Alpine Noir", "Financial Yield", "Strategic Path"];
+
+            function initBeads() {
+                const rail = document.getElementById('bead-rail');
+                for(let i=0; i<total; i++) {
+                    const bead = document.createElement('div');
+                    bead.className = 'bead' + (i===0 ? ' active' : '');
+                    rail.appendChild(bead);
+                }
+            }
+
+            function updateUI() {
+                indicator.innerText = (current + 1).toString().padStart(2, '0') + " / 09";
+                labelEl.innerText = labels[current];
+                const slides = document.querySelectorAll('.slide');
+                slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+                const beads = document.querySelectorAll('.bead');
+                beads.forEach((b, idx) => b.classList.toggle('active', idx === current));
+            }
+
+            window.changeSlide = function(dir) {
+                current = (current + dir + total) % total;
+                updateUI();
+            };
+
+            window.goToSlide = function(idx) {
+                current = idx;
+                updateUI();
+            };
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') changeSlide(1);
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+            });
+
+            window.addEventListener('load', () => {
+                initBeads();
+                updateUI();
+            });
+        })();
+    </script>
+</body>
+</html>
